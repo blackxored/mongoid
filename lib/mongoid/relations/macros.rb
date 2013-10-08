@@ -55,6 +55,7 @@ module Mongoid
             raise Errors::VersioningNotOnRoot.new(self)
           end
           meta = characterize(name, Embedded::In, options, &block)
+          touchable(meta)
           self.embedded = true
           relate(name, meta)
           builder(name, meta).creator(name, meta)
